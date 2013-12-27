@@ -30,7 +30,7 @@ def write_vmd_script(input_name, frame_number, output_name):
 def write_extended_system_file(input_name, frame_number, output_name):
     try:
         ext_system = subprocess.check_output(["grep"
-                                              ,str(frame_number * 100)
+                                              ,"^" + str(frame_number * 1000)
                                               ,input_name + ".xst"
                                               ])
         with open(output_name + ".xsc", "w") as xsf:
@@ -74,7 +74,7 @@ def write_submission_file(file_name):
             ]))
 
 if __name__ == "__main__":
-    MODEL_NUMBER = 1
+    MODEL_NUMBER = 4
     dcd_file = sys.argv[1]
     input_name = dcd_file[:-4]
     output_name = "M" + str(MODEL_NUMBER) + dcd_file[2:-4]
